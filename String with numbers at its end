@@ -1,0 +1,51 @@
+class Solution 
+{
+    int isSame(String s) 
+    {
+        char ch[] = new char[s.length()];
+        ch = s.toCharArray();
+        int i,j,k,ilen=0,flag=0;
+        
+        for( i=0;i<s.length();i++)
+        {
+            for( j=0;j<10;j++)
+            {
+                char newch = ch[i];
+                if( Character.getNumericValue(newch) == j )
+                {
+                   ilen = i;     
+                   flag = 1;
+                   break;     
+                }
+            }
+            if(flag==1){
+                break;
+            }
+        }
+        
+        int numlen = s.length()-ilen;
+        int ivalue = ilen;
+        char charr[] = new char[numlen];
+        
+        for( k=0 ; k < numlen ; k++){
+            
+            charr[k] = ch[ivalue];
+            ivalue++;
+        }
+        String numstr = new String(charr);
+
+            //long num = Long.parseLong(String.valueOf(numstr));
+            java.math.BigInteger num = new java.math.BigInteger(String.valueOf(numstr));
+
+            if(java.math.BigInteger.valueOf(ilen).compareTo(num) == 0){
+                
+                return 1;
+            }
+            else{
+                
+                return 0;
+            }
+ 
+    }
+    
+}
